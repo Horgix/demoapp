@@ -7,7 +7,7 @@ before_install:
   - docker build -t horgix/demoapp .
 
 script:
-  - docker run horgix/demoapp
+  - docker run -d horgix/demoapp
 
 after_success:
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
