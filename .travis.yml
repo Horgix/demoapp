@@ -4,13 +4,14 @@ services:
   - docker
 
 before_install:
-  - docker build -t horgix/demoapp .
+  - docker build -t horgix/demoapp:latest .
 
 script:
-  - docker run -d horgix/demoapp
+  - docker run -d horgix/demoapp:latest
 
 after_success:
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker push horgix/demoapp;
+      docker push horgix/demoapp:latest;
+      curl -L -X PUT "https://marathon.horgix.eu/v2/apps/demoapp" -H "Content-type: application/json" -d @marathon_app.json
       fi
