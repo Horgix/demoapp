@@ -23,5 +23,5 @@ deploy:
   script:
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     - docker push horgix/demoapp:latest;
-    - 'curl -L -X PUT "https://marathon.horgix.eu/v2/apps/demoapp/restart" -H "Content-type: application/json" -u "$MARATHON_USER":"$MARATHON_PASSWORD";'
+    - 'curl -L -X POST "https://marathon.horgix.eu/v2/apps/demoapp/restart" -H "Content-type: application/json" -u "$MARATHON_USER":"$MARATHON_PASSWORD";'
   #- 'curl -L -X PUT "https://marathon.horgix.eu/v2/apps/demoapp" -H "Content-type: application/json" -d @marathon_app.json -u "$MARATHON_USER":"$MARATHON_PASSWORD";'
