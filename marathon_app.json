@@ -15,7 +15,6 @@
         {
           "containerPort": 80,
           "hostPort": 0,
-          "servicePort": 10001,
           "protocol": "tcp",
           "name": "80",
           "labels": {}
@@ -42,12 +41,5 @@
     "traefik.enable": "true",
     "traefik.backend": "demoapp",
     "traefik.frontend.rule": "Host:demo.horgix.eu"
-  },
-  "portDefinitions": [
-    {
-      "port": 10001,
-      "protocol": "tcp",
-      "labels": {}
-    }
-  ]
+  }
 }
