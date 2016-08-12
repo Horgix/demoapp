@@ -1,9 +1,24 @@
 image: docker:1.11.2
 
-before_script:
-  - docker info
+stages:
+  - check
+  - build
+    #- test
+  - deploy
+
+check:
+  stage: check
+  script:
+    - docker info
 
 build:
   stage: build
   script:
     - docker build -t horgix/demoapp:latest .
+
+build:
+  stage: deploy
+  script:
+    - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    - docker push horgix/demoapp:latest;
+    #- curl -L -X PUT "https://marathon.horgix.eu/v2/apps/demoapp" -H "Content-type: application/json" -d @marathon_app.json -u $MARATHON_USER:$MARATHON_PASSWORD
