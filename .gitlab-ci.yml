@@ -1,0 +1,9 @@
+image: docker:1.11.2
+
+before_script:
+  - docker info
+
+build:
+  stage: build
+  script:
+    - docker build -t horgix/demoapp:latest .
