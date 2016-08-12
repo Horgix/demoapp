@@ -18,7 +18,7 @@ build:
     - docker ps
     - docker images
 
-build:
+deploy:
   stage: deploy
   script:
     - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
